@@ -67,7 +67,7 @@ void setup()
 
 // ********************************
 // 下記のROTATION_TESTを有効にすると、回転テストが実行されます。(Tab5だと再起動を繰り返す。)
-//#define ROTATION_TEST
+#define ROTATION_TEST
 
 int16_t rotation = 0;
 void loop()
