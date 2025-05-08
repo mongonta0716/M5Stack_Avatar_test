@@ -1,14 +1,16 @@
 #include <Arduino.h>
 
+#include <M5UnitLCD.h>
 #include <M5Unified.h>
 #include <Avatar.h>
 
+M5UnitLCD unitlcd;
 M5Canvas canvas(&M5.Lcd);
 using namespace m5avatar;
 
 //Avatar avatar(&M5.Display, 320, 240);
 Avatar *avatar; //(&M5.Display, 640, 480);
-
+Avatar *avatar2; //(&M5.Display, 640, 480);
 
 const Expression expressions[] = {
   Expression::Angry,
@@ -31,6 +33,8 @@ void setup()
 {
   auto cfg = M5.config();
   M5.begin(cfg);
+  unitlcd.begin();
+  unitlcd.setRotation(1);
   M5.Lcd.setRotation(1);
   M5.Lcd.setBrightness(80);
   M5.Lcd.clear();
@@ -53,11 +57,15 @@ void setup()
   cps[3]->set(COLOR_PRIMARY, TFT_RED);
   cps[3]->set(COLOR_BACKGROUND, TFT_PINK);
   avatar = new Avatar(&M5.Display, M5.Display.width(), M5.Display.height());
+  avatar2 = new Avatar(&unitlcd, unitlcd.width(), unitlcd.height());
   //avatar = new Avatar(&M5.Display, 720, 720); //M5.Display.width(), M5.Display.height());
 
   avatar->init(1);
   avatar->setColorPalette(*cps[1]);
   avatar->setScale(1.0f);
+  avatar2->init(1);
+  avatar2->setColorPalette(*cps[2]);
+  avatar2->setScale(1.0f);
   //avatar->setRotation(180);
   //avatar.setPosition(M5.Lcd.height() / 2, M5.Lcd.width() / 2);
   //avatar.setPosition(200, 400);
@@ -75,6 +83,7 @@ void loop()
   M5.update();
 #ifdef ROTATION_TEST
   avatar->setRotation(rotation);
+  avatar2->setRotation(rotation);
   rotation = (rotation + 1);
   delay(10);
   if (rotation > 360) {
