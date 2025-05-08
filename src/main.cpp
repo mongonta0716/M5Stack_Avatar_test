@@ -31,7 +31,7 @@ void setup()
 {
   auto cfg = M5.config();
   M5.begin(cfg);
-  M5.Lcd.setRotation(0);
+  M5.Lcd.setRotation(1);
   M5.Lcd.setBrightness(80);
   M5.Lcd.clear();
   M5.Lcd.setTextSize(3);
