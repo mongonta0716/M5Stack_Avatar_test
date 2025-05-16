@@ -52,8 +52,8 @@ void setup()
   cps[2]->set(COLOR_BACKGROUND, TFT_WHITE);
   cps[3]->set(COLOR_PRIMARY, TFT_RED);
   cps[3]->set(COLOR_BACKGROUND, TFT_PINK);
-  avatar = new Avatar(&M5.Display, M5.Display.width(), M5.Display.height());
-  //avatar = new Avatar(&M5.Display, 720, 720); //M5.Display.width(), M5.Display.height());
+  //avatar = new Avatar(&M5.Display, M5.Display.width(), M5.Display.height());
+  avatar = new Avatar(&M5.Display, 720, 720); //M5.Display.width(), M5.Display.height());
 
   avatar->init(1);
   avatar->setColorPalette(*cps[1]);
@@ -67,7 +67,7 @@ void setup()
 
 // ********************************
 // 下記のROTATION_TESTを有効にすると、回転テストが実行されます。(Tab5だと再起動を繰り返す。)
-#define ROTATION_TEST
+//#define ROTATION_TEST
 
 int16_t rotation = 0;
 void loop()
