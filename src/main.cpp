@@ -31,17 +31,20 @@ void setup()
 {
   auto cfg = M5.config();
   M5.begin(cfg);
-  M5.Lcd.setRotation(1);
+  M5.Lcd.setRotation(0);
   M5.Lcd.setBrightness(80);
   M5.Lcd.clear();
   M5.Lcd.setTextSize(3);
   M5.Lcd.setFont(&fonts::efontJA_24_bi);
-  canvas.createSprite(300, 100);
+  canvas.createSprite(M5.Display.width(), M5.Display.height());
+  canvas.setColorDepth(16);
+  canvas.fillScreen(TFT_YELLOW);
+  canvas.setCursor(M5.Display.width() / 2, M5.Display.height() / 2);
   canvas.setFont(&fonts::efontJA_24_bi);
   canvas.println("M5Stack Avatar Test");
   canvas.println("回転テスト");
-  canvas.pushSprite(0, 0);
-
+  canvas.setPivot(M5.Display.width() / 2, M5.Display.height() / 2);
+/*
   cps[0] = new ColorPalette();
   cps[1] = new ColorPalette();
   cps[2] = new ColorPalette();
@@ -61,7 +64,7 @@ void setup()
   //avatar->setRotation(180);
   //avatar.setPosition(M5.Lcd.height() / 2, M5.Lcd.width() / 2);
   //avatar.setPosition(200, 400);
-
+*/
 }
 
 
@@ -73,6 +76,8 @@ int16_t rotation = 0;
 void loop()
 {
   M5.update();
+  canvas.pushRotateZoom(rotation, 1.0f, 1.0f);
+  rotation = (rotation + 1);
 #ifdef ROTATION_TEST
   avatar->setRotation(rotation);
   rotation = (rotation + 1);
