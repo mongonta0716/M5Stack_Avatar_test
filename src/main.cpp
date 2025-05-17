@@ -44,7 +44,7 @@ void setup()
   canvas.println("M5Stack Avatar Test");
   canvas.println("回転テスト");
   canvas.setPivot(M5.Display.width() / 2, M5.Display.height() / 2);
-/*
+
   cps[0] = new ColorPalette();
   cps[1] = new ColorPalette();
   cps[2] = new ColorPalette();
@@ -64,7 +64,7 @@ void setup()
   //avatar->setRotation(180);
   //avatar.setPosition(M5.Lcd.height() / 2, M5.Lcd.width() / 2);
   //avatar.setPosition(200, 400);
-*/
+
 }
 
 
@@ -76,8 +76,6 @@ int16_t rotation = 0;
 void loop()
 {
   M5.update();
-  canvas.pushRotateZoom(rotation, 1.0f, 1.0f);
-  rotation = (rotation + 1);
 #ifdef ROTATION_TEST
   avatar->setRotation(rotation);
   rotation = (rotation + 1);
